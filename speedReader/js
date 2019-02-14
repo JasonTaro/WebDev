@@ -1,0 +1,101 @@
+/*
+Author: Jason Fukumoto
+File: speedreader.js
+Description: Uses buttons, radios, and fieldsets to change the font size and
+ speed of the words being displayed. A timer is set to run this program
+ correctly.
+*/
+
+(function() {
+
+	"use strict";
+	let wordArr;
+	let fontName;
+	let ms;
+	let timer = null;
+	let index = 0;
+	let inProgress = false;
+
+	window.onload = function() {
+		let stop = document.getElementById("stop");
+		stop.disabled = true;
+		let startButton = document.getElementById("start");
+		let size = document.getElementById("textsize");
+		let speed = document.getElementById("speed");
+		startButton.onclick = playControls;
+		stop.onclick = stopControls;
+		size.onchange = changeSize;
+		speed.onchange = changeSpeed;
+	};
+
+	/**
+	 *Disables buttons when the start button is clicked. Retrevies the string
+	  from the textbox and stores in array, determines the speed and font size.
+	*/
+	function playControls(){
+		document.getElementById("start").disabled = true;
+		document.getElementById("textbox").disabled = true;
+		document.getElementById("stop").disabled = false;
+		if (!inProgress){ //initially
+			inProgress = true;
+			let textString = document.getElementById("textbox").value;
+			let speed = document.getElementById("speed");
+			wordArr = textString.split(/[ \t\n]+/);
+			ms = parseInt(speed.options[speed.selectedIndex].value);
+			fontName = document.querySelector('input[name="size"]:checked').value;
+			timer = setInterval(runReader, ms);
+		}
+	}
+
+	/**
+	 *Timer to ensure the speed gets changed and the words are displayed correctly.
+	*/
+	function runReader(){
+		if (index < wordArr.length) {
+			document.getElementById("topbox").innerHTML = wordArr[index];
+			if (!(index > wordArr.length)){
+				index++;
+			}
+		}else {
+			stopControls();
+			clearInterval(timer);
+		}
+	}
+
+	/**
+	 *Disables the buttons and clears timer.
+	*/
+	function stopControls(){
+		clearInterval(timer);
+		inProgress = false;
+		document.getElementById("stop").disabled = true;
+		document.getElementById("start").disabled = false;
+		document.getElementById("textbox").disabled = false;
+	}
+
+	/**
+	 *Changes size of the font when users chooses a different size option.
+	*/
+	function changeSize(){
+		let topbox = document.getElementById("topbox");
+		fontName = document.querySelector('input[name="size"]:checked').value;
+		if (fontName === "Big"){
+			topbox.style.fontSize = 48 + "pt";
+		}else if (fontName === "Bigger"){
+			topbox.style.fontSize = 60 + "pt";
+		}
+	}
+
+	/**
+	 *Changes the seed when the user chooses a different word count per minute.
+	*/
+	function changeSpeed(){
+		if (inProgress){
+			clearInterval(timer);
+			let eTemp = document.getElementById("speed");
+			ms = parseInt(eTemp.options[eTemp.selectedIndex].value);
+			timer = setInterval(runReader, ms);
+		}
+	}
+
+})();
