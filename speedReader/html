@@ -1,0 +1,59 @@
+<!--
+Author: Jason Fukumoto
+File: speedreader.html
+Description: Enables users to enter text and dictate the speed and font size being displayed.
+-->	
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Speed Reader</title>
+		<link href="speedreader.css" type="text/css" rel="stylesheet" />
+		<script src="speedreader.js" type="text/javascript"> </script>
+	</head>
+
+	<body>
+		<h1> SpeedReader </h1>
+		<div id="topbox"> </div>
+		<div id="allbuttons">
+			<fieldset>
+				<legend> Play Controls: </legend>
+				<button id="start"> Start </button>
+				<button id="stop"> Stop </button>
+			</fieldset>
+			<fieldset>
+				<legend> Speed: </legend>
+				<select id="speed" name="wpm">
+					<option value="500"> 50 wpm</option>
+					<option value="200"> 300 wpm</option>
+					<option value="171" selected="selected"> 350 wpm</option>
+					<option value="150"> 400 wpm</option>
+					<option value="133"> 450 wpm</option>
+					<option value="120"> 500 wpm</option>
+				</select>
+			</fieldset>
+			<fieldset id="textsize">
+				<legend> Size: </legend>
+				<input type="radio" name="size" value="Medium" checked="checked" /> Medium
+				<input type="radio" name="size" value="Big" /> Big
+				<input type="radio" name="size" value="Bigger" /> Bigger
+			</fieldset>
+		</div>
+
+		<div id="inputtext">
+			<fieldset>
+				<legend> Input Text </legend>
+				<textarea id="textbox" rows="10" cols="80"></textarea>
+			</fieldset>
+		</div>
+
+		<div id="validate">
+			<a href="https://validator.w3.org/check/referer"> 
+				<img class="valid" src="w3c-html-blue.png" alt="w3c-html-blue" /> </a>
+			<a href="https://jigsaw.w3.org/css-validator/check/referer"> 
+				<img class="valid" src="w3c-css-blue.png" alt="w3c-css-blue" /></a>
+			<a href="https://webster.cs.washington.edu/jslint/?referer" > 
+				<img class="valid" src="w3c-js-blue.png" alt="w3c-js-blue" /> </a>
+		</div>	
+	</body>
+</html>
