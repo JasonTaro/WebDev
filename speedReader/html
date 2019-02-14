@@ -46,14 +46,5 @@ Description: Enables users to enter text and dictate the speed and font size bei
 				<textarea id="textbox" rows="10" cols="80"></textarea>
 			</fieldset>
 		</div>
-
-		<div id="validate">
-			<a href="https://validator.w3.org/check/referer"> 
-				<img class="valid" src="w3c-html-blue.png" alt="w3c-html-blue" /> </a>
-			<a href="https://jigsaw.w3.org/css-validator/check/referer"> 
-				<img class="valid" src="w3c-css-blue.png" alt="w3c-css-blue" /></a>
-			<a href="https://webster.cs.washington.edu/jslint/?referer" > 
-				<img class="valid" src="w3c-js-blue.png" alt="w3c-js-blue" /> </a>
-		</div>	
 	</body>
 </html>
